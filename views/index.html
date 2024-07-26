@@ -1,4 +1,4 @@
-{{ block "index" .}}
+{{block "index" .}}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,22 +13,30 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
-    <!-- I'm template for count that is rendered below and I'll replaced by that thing! -->
-    <div>
-      Count
-      <div id="count">{{ template "count" . }}</div>
-    </div>
-    <button hx-target="#count" hx-post="/count">Count</button>
-  </body>
+  <body></body>
 </html>
 
-<!-- There are separatetors with empty comment ignore them -->
-{{ end }}
+{{end}}
 <!--  -->
-<!-- I'm block count and I accept an object count that is passed using target attribute -->
-{{block "count" .}}
+{{block "form" .}}
 <!--  -->
-{{ .Count }}
+<form hx-post="/contacts">
+  <!--  -->
+  name: <input type="text" name="name" />
+  <!--  -->
+  email: <input type="text" name="email" />
+  <!--  -->
+  <button type="submit">Add</button>
+</form>
+{{end}}
+
 <!--  -->
+{{block "display" .}}
+<!--  -->
+<div style="display: flex; flex-direction: column">
+  <!--  -->
+  Name: <span>{{.Name}}</span>
+  <!--  -->
+  Email: <span>{{.Email}}</span>
+</div>
 {{ end }}
